@@ -67,6 +67,13 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Lv
         return dataList.get(position);
     }
 
+    public void clear() {
+        if (null != dataList) {
+            dataList.clear();
+            notifyDataSetChanged();
+        }
+    }
+
     class LvViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView ivLogo;

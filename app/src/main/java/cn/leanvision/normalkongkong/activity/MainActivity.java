@@ -99,7 +99,6 @@ public class MainActivity extends LvBaseActivity {
         });
         onRefreshListener.onRefresh();
 
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this) {
             @Override
             protected int getExtraLayoutSpace(RecyclerView.State state) {
@@ -263,6 +262,9 @@ public class MainActivity extends LvBaseActivity {
                 if (null != deviceList && deviceList.size() > 0) {
                     initRecyclerView(deviceList);
                 } else {
+                    if(null != deviceListAdapter){
+                        deviceListAdapter.clear();
+                    }
                     showSnackBar(R.string._n_no_device);
                 }
                 mRefreshLayout.setRefreshing(false);
