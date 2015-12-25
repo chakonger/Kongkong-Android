@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/in_kg"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/default_panel_height"
+    android:orientation="horizontal"
+    android:visibility="visible">
+
+    <LinearLayout
+        android:id="@+id/ll_kg_switch"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <!-- 开关的布局 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_kg_switch"
+                android:layout_width="38dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/new_switch_off" />
+
+            <TextView
+                android:id="@+id/tv_kg_switch_off"
+                style="@style/s_font_small"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/iv_kg_switch"
+                android:text="@string/_close"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_kg_switch_on"
+                style="@style/s_font_small"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/iv_kg_switch"
+                android:text="@string/_open"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="#c1c3c5" />
+
+    <!-- 定时的布局 -->
+    <LinearLayout
+        android:id="@+id/ll_kg_time"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/new_clock" />
+
+        <TextView
+            style="@style/s_font_small"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="@string/_timing"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="#c1c3c5" />
+
+    <!-- 电量的布局 -->
+    <LinearLayout
+        android:id="@+id/ll_kg_power"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/new_qingjing" />
+
+        <TextView
+            style="@style/s_font_small"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:text="@string/_power"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</LinearLayout>

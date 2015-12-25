@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="45dp"
+    android:layout_height="45dp"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/mydevice_chazuo_n" />
+</LinearLayout>

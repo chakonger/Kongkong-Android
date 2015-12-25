@@ -1,0 +1,65 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:pro="http://schemas.android.com/apk/res-auto" >
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center_vertical" >
+
+        <cn.leanvision.normalkongkong.widget.BoundProgressView
+            android:id="@+id/bottom_bpv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            pro:circle_radius="15dp"
+            pro:pro_height="48dp"
+            pro:hor_line_width="8dp"
+            pro:stroke_width="2dp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/rl_bottom"
+        android:gravity="center"
+        android:text="@string/desc_one"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <cn.leanvision.normalkongkong.widget.RippleBackground
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/tv_desc"
+        android:layout_alignParentTop="true"
+        app:rb_color="#89d7ff"
+        app:rb_duration="3000"
+        app:rb_radius="32dp"
+        app:rb_rippleAmount="5"
+        app:rb_scale="5"
+        app:rb_type="strokeRipple" >
+
+        <ImageView
+            android:id="@+id/centerImage"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/circle_yellow" />
+
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_above="@id/centerImage"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="6dp"
+            android:layout_toLeftOf="@id/centerImage"
+            android:visibility="invisible" />
+    </cn.leanvision.normalkongkong.widget.RippleBackground>
+
+</merge>

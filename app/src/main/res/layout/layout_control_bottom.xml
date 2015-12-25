@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.leanvision.normalkongkong.widget.ControllerPanelView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_controller_panel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="140dp"
+        android:layout_weight="1">
+
+        <cn.leanvision.normalkongkong.widget.LvVerticalViewGroup
+            android:id="@+id/lv_vertical_view_group"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv_infra_name"
+            style="@style/s_font_micro"
+            android:layout_width="15dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="2dp"
+            android:gravity="center"
+            android:textColor="@color/black" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="#c1c3c5" />
+
+    <FrameLayout
+        android:id="@+id/fl_parent_panel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4">
+
+        <TextView
+            android:id="@+id/tv_error"
+            style="@style/s_font_small"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:gravity="center"
+            android:text="@string/_n_panel"
+            android:textColor="@color/black"
+            android:visibility="gone" />
+
+        <include layout="@layout/view_loading" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/controller_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</cn.leanvision.normalkongkong.widget.ControllerPanelView>

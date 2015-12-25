@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">精益DEMO</string>
+    <string name="action_settings">添加设备</string>
+    <string name="action_remove">删除设备</string>
+
+    <string name="_n_time_out">执行超时</string>
+    <string name="network_is_not_available">网络异常，请检查网络后重试</string>
+
+    <string name="refresh_failed">刷新失败</string>
+    <string name="title_activity_main">设备列表</string>
+    <!--注册登录-->
+    <string name="title_activity_login">注册登录</string>
+    <string name="Sign_in">登录</string>
+    <string name="register">注册</string>
+    <string name="_n_register">用户名或密码不能为空</string>
+    <string name="title_activity_bound">绑定设备</string>
+
+    <string name="_n_no_device">暂无设备</string>
+    <string name="_n_refresh_failed">设备列表获取失败，请手动刷新</string>
+    <!--wifi设置-->
+    <string name="title_activity_wifi_setting">设置上网信息</string>
+    <string name="wifi_bound">开始绑定</string>
+    <string name="wifi_ssid">wifi名称</string>
+    <string name="wif_pwd">wifi密码</string>
+    <string name="wifi_not_open">请打开wifi后重新进入</string>
+    <string name="title_activity_device_control">DeviceControlActivity</string>
+    <!--绑定-->
+    <string name="desc_one">手机正在尝试连接云端</string>
+    <!--设备控制-->
+    <string name="_n_panel">控制面板信息获取失败\n点击界面重新获取</string>
+    <string name="_timing">定时</string>
+    <string name="_power">电量</string>
+    <string name="_model">模式</string>
+    <string name="_temperature">温度</string>
+    <string name="_windSpeed">风速</string>
+    <string name="_windDir">风向</string>
+    <string name="_openAndClose">开关</string>
+    <string name="_close">关</string>
+    <string name="_open">开</string>
+
+    <string name="n_max_temp">已到最大温度</string>
+    <string name="n_min_temp">已到最低温度</string>
+    <string name="delete_failed">删除失败</string>
+
+    <string name="_bp_phone">手机</string>
+    <string name="_bp_switch">设备</string>
+    <string name="_bp_cloud">云端</string>
+    <string name="bound_failed">绑定失败</string>
+</resources>

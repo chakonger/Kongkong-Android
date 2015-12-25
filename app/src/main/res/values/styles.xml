@@ -1,0 +1,62 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:listDivider">@color/colorDivider</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- 字体的基础样式 -->
+    <style name="text_base">
+        <item name="android:typeface">sans</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="s_font_large" parent="@style/text_base">
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="s_font_medium" parent="@style/text_base">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+    <style name="s_font_small" parent="@style/text_base">
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="s_font_micro" parent="@style/text_base">
+        <item name="android:textSize">@dimen/text_size_micro</item>
+    </style>
+
+    <style name="chat_text_date_style" parent="@style/s_font_micro">
+        <item name="android:padding">3dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:background">@drawable/chat_send_time_bg</item>
+    </style>
+
+    <style name="chat_content_date_style" parent="@style/s_font_medium">
+        <item name="android:gravity">left|center</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+</resources>

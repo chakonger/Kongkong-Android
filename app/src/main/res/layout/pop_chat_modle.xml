@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/new_back"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/ll_chat_modle_01"
+        android:layout_width="58dp"
+        android:layout_height="40dp"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/image_chat_modle01"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/new_auto" />
+
+        <View
+            android:layout_width="19dp"
+            android:layout_height="1dp"
+            android:visibility="visible"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:background="#c9cace" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_chat_modle_02"
+        android:layout_width="58dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/image_chat_modle02"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/new_cold" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="19dp"
+        android:layout_height="1dp"
+        android:background="#c9cace" />
+
+    <LinearLayout
+        android:id="@+id/ll_chat_modle_03"
+        android:layout_width="58dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/image_chat_modle03"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/new_hot" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="19dp"
+        android:layout_height="1dp"
+        android:background="#c9cace" />
+
+    <LinearLayout
+        android:id="@+id/ll_chat_modle_04"
+        android:layout_width="58dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/image_chat_modle04"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/new_delete_wet" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="19dp"
+        android:layout_height="1dp"
+        android:background="#c9cace" />
+
+    <LinearLayout
+        android:id="@+id/ll_chat_modle_05"
+        android:layout_width="58dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/image_chat_modle05"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/new_wind" />
+    </LinearLayout>
+
+</LinearLayout>
