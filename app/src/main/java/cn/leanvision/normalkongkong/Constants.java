@@ -25,7 +25,7 @@ public class Constants {
     /**
      * 绑定是传给插座的服务器地址，暂不支持域名
      */
-    public static final String BIND_ADDRESS = "118.192.76.159";
+    public static final String BIND_ADDRESS = "ss1.chakonger.net.cn";
     public static final String BIND_PORT = "80";
 
     public static final String ERROR_CODE_SUCCEED = "0";
