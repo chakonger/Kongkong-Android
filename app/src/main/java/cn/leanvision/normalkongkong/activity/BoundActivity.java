@@ -21,13 +21,10 @@ import com.espressif.iot.esptouch.task.IEsptouchTask;
 import com.espressif.iot.esptouch.udp.UDPSocketServer;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -58,7 +55,8 @@ public class BoundActivity extends LvBaseActivity {
     public static final int BOUND_SUCCEED = 28;
     public static final int BOUND_FAILED = 30;
 
-    public static final int BOUND_WAIT_DELAY = 29;
+    //    public static final int BOUND_WAIT_DELAY = 29;
+    public static final int SEND_REPEAT = 31;
 
     @Bind(R.id.bottom_bpv)
     BoundProgressView mBoundProgressView;
@@ -82,6 +80,11 @@ public class BoundActivity extends LvBaseActivity {
     // 暂时这么处理
     private boolean isSeedSendSucceed = false;
     private BroadcastReceiver pushReceiver;
+    private int sendTimes = 0;
+
+    String address;
+    int port;
+    JSONObject jsonObject;
 
     public static Intent createIntent(Context context, String wifiSsid) {
         Intent intent = new Intent(context, BoundActivity.class);
@@ -295,7 +298,7 @@ public class BoundActivity extends LvBaseActivity {
                     }
                 });
                 //等待20s
-                lvHandler.sendEmptyMessageDelayed(BOUND_WAIT_DELAY, 20 * 1000);
+//                lvHandler.sendEmptyMessageDelayed(BOUND_WAIT_DELAY, 20 * 1000);
             } else {
                 bindFailed();
             }
@@ -369,18 +372,18 @@ public class BoundActivity extends LvBaseActivity {
                 //do nothing
             } else {
                 //返回结果
-                LogUtil.log(BoundActivity.this.getClass(), "RESULT返回数据 : " + result);
+                LogUtil.e("RESULT返回数据 : " + result);
                 JSONObject parseObject = JSONObject.parseObject(result);
                 String devSn = parseObject.getString("devSn");
 
-                String address = parseObject.getString("address");
-                int port = parseObject.getIntValue("port");
+                address = parseObject.getString("address");
+                port = parseObject.getIntValue("port");
 
                 // 这里我拿到了连接WIFI后的返回信息进行服务器配置
                 // 将服务器信息通过UDP发送给插座
                 String serverAddress = Constants.BIND_ADDRESS;
                 String serverAddressPort = Constants.BIND_PORT;
-                JSONObject jsonObject = new JSONObject();
+                jsonObject = new JSONObject();
                 jsonObject.put("domain", serverAddress);
                 jsonObject.put("port", serverAddressPort);
                 jsonObject.put("seed", seed);
@@ -389,41 +392,12 @@ public class BoundActivity extends LvBaseActivity {
                  * {"domain":"域名","port":"端口","seed":"5位随机数(当devSn已经是20位时可发可不发)"
                  * , "devSn":"设备号(应该与以前插座发出的完全一致)"}
                  * */
-                LogUtil.e("发送数据 ---" + jsonObject.toString());
-                sendServerInfo(address, port, jsonObject);
+                LogUtil.e("发送数据 : " + jsonObject.toString());
+//                sendServerInfo(address, port, jsonObject);
                 // 停止发送绑定信息
                 Message message = lvHandler.obtainMessage(BoundActivity.UDP_PAIR_RETURN);
                 message.obj = devSn;
                 lvHandler.sendMessage(message);
-            }
-        }
-
-        /**
-         * 通过UDP发送服务器信息到插座
-         */
-        private void sendServerInfo(String address, int port, JSONObject jsonObject) {
-            try {
-                DatagramSocket datagramSocket = new DatagramSocket();
-                byte[] data = jsonObject.toString().getBytes("UTF-8");
-                DatagramPacket datagramPacket = new DatagramPacket(data, data.length, InetAddress.getByName(address), port);
-                datagramSocket.send(datagramPacket);
-                Thread.sleep(200);
-            } catch (SocketException e) {
-                e.printStackTrace();
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-                // 只处理IO异常
-                if (count < 3) {
-                    sendServerInfo(address, port, jsonObject);
-                } else {
-                    //TODO 绑定失败
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
 
@@ -433,6 +407,25 @@ public class BoundActivity extends LvBaseActivity {
                 lvUdpServer = null;
             }
         }
+    }
+
+    /**
+     * 通过UDP发送服务器信息到插座
+     */
+    private void sendServerInfo() {
+        Executors.newCachedThreadPool().execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DatagramSocket datagramSocket = new DatagramSocket();
+                    byte[] data = jsonObject.toString().getBytes("UTF-8");
+                    DatagramPacket datagramPacket = new DatagramPacket(data, data.length, InetAddress.getByName(address), port);
+                    datagramSocket.send(datagramPacket);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public static class LvHandler extends LvIBaseHandler<BoundActivity> {
@@ -451,17 +444,29 @@ public class BoundActivity extends LvBaseActivity {
                 case UDP_PAIR_RETURN:
                     //TODO 等待插座上线  N6A0
                     activity.stopEsptouch(true);
+                    activity.stopUdpReceiver();
+                    //TODO 开始发送服务器信息，每五秒钟一次，查询12次
+                    sendEmptyMessage(SEND_REPEAT);
                     break;
                 case BOUND_SUCCEED:
-                    this.removeMessages(BOUND_WAIT_DELAY);
+//                    this.removeMessages(BOUND_WAIT_DELAY);
                     Intent intent = MainActivity.createIntent(activity, MainActivity.TYPE_BOUNDED);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     activity.startActivity(intent);
                     break;
-                case BOUND_WAIT_DELAY:
+//                case BOUND_WAIT_DELAY:
                 case BOUND_FAILED:
                     activity.showSnackBar(R.string.bound_failed);
                     activity.finish();
+                    break;
+                case SEND_REPEAT:
+                    if (activity.sendTimes < 12) {
+                        activity.sendServerInfo();
+                        activity.sendTimes++;
+                        sendEmptyMessageDelayed(SEND_REPEAT, 5 * 1000);
+                    } else {
+                        sendEmptyMessage(BOUND_FAILED);
+                    }
                     break;
             }
         }
