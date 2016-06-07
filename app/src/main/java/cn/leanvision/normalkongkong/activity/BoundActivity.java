@@ -158,7 +158,7 @@ public class BoundActivity extends LvBaseActivity {
                 public void onReceive(Context context, Intent intent) {
                     String action = intent.getAction();
                     if (Constants.BROADCAST_BIND_SUCCEED.equals(action)) {
-                        //TODO 绑定成功
+                        // 绑定成功
                         mBoundProgressView.setStep(3);
                         lvHandler.sendEmptyMessageDelayed(BOUND_SUCCEED, 200);
                     }
@@ -442,10 +442,10 @@ public class BoundActivity extends LvBaseActivity {
             BoundActivity activity = getActivity();
             switch (msg.what) {
                 case UDP_PAIR_RETURN:
-                    //TODO 等待插座上线  N6A0
+                    // 等待插座上线  N6A0
                     activity.stopEsptouch(true);
                     activity.stopUdpReceiver();
-                    //TODO 开始发送服务器信息，每五秒钟一次，查询12次
+                    // 开始发送服务器信息，每五秒钟一次，查询12次
                     sendEmptyMessage(SEND_REPEAT);
                     break;
                 case BOUND_SUCCEED:

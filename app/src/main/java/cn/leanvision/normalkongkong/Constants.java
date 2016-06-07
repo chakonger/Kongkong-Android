@@ -21,7 +21,7 @@ public class Constants {
     /**
      * 替换成本公司分配到的APP_ID
      */
-    public static final String APP_ID = "leanvision";
+    public static final String APP_ID = "demo";
     /**
      * 绑定是传给插座的服务器地址，暂不支持域名
      */
