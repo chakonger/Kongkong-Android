@@ -10,8 +10,8 @@ public class SharedPrefHelper {
     /**
      * SharedPreferences的名字
      */
-    private static final String SP_FILE_NAME = "normal_kong";
-    private static SharedPrefHelper sharedPrefHelper = null;
+    private static final String           SP_FILE_NAME     = "normal_kong";
+    private static       SharedPrefHelper sharedPrefHelper = null;
     private static SharedPreferences spf;
 
     public static synchronized SharedPrefHelper getInstance() {
@@ -27,7 +27,7 @@ public class SharedPrefHelper {
 
     public void saveUserName(String userName) {
         try {
-            spf.edit().putString("a", EncryptionUtil.encode(userName)).commit();
+            spf.edit().putString("a", EncryptionUtil.encode(userName)).apply();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,7 +45,7 @@ public class SharedPrefHelper {
 
     public void savePwd(String pwd) {
         try {
-            spf.edit().putString("b", EncryptionUtil.encode(pwd)).commit();
+            spf.edit().putString("b", EncryptionUtil.encode(pwd)).apply();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,7 +62,7 @@ public class SharedPrefHelper {
     }
 
     public void saveSessionID(String sessionID) {
-        spf.edit().putString("c", sessionID).commit();
+        spf.edit().putString("c", sessionID).apply();
     }
 
     public String getSessionID() {
@@ -71,7 +71,7 @@ public class SharedPrefHelper {
 
     public void saveWifiPwd(String wifiPWd) {
         try {
-            spf.edit().putString("d", EncryptionUtil.encode(wifiPWd)).commit();
+            spf.edit().putString("d", EncryptionUtil.encode(wifiPWd)).apply();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -88,7 +88,7 @@ public class SharedPrefHelper {
     }
 
     public void setBackgroundTaskStop(boolean isStop) {
-        spf.edit().putBoolean("e", isStop).commit();
+        spf.edit().putBoolean("e", isStop).apply();
     }
 
     public boolean isBackGroundTaskStop() {
@@ -97,8 +97,8 @@ public class SharedPrefHelper {
 
     public void saveBackGroundGetUrl(String url) {
         try {
-            spf.edit().putString("f", EncryptionUtil.encode(url)).commit();
-            spf.edit().putLong("g", System.currentTimeMillis()).commit();
+            spf.edit().putString("f", EncryptionUtil.encode(url)).apply();
+            spf.edit().putLong("g", System.currentTimeMillis()).apply();
         } catch (Exception e) {
             e.printStackTrace();
         }

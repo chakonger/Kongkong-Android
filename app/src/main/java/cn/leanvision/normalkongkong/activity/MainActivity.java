@@ -47,16 +47,16 @@ import cn.leanvision.normalkongkong.widget.DividerItemDecoration;
 public class MainActivity extends LvBaseActivity {
 
     public static final int TYPE_BOUNDED = 1;
-    public static final int TYPE_REMOVE = 1;
+    public static final int TYPE_REMOVE  = 1;
 
     @Bind(R.id.root_swipe_view)
     SwipeRefreshLayout mRefreshLayout;
     @Bind(R.id.recycler_view)
-    RecyclerView recyclerView;
+    RecyclerView       recyclerView;
 
-    private String sessionID;
+    private String            sessionID;
     private DeviceListAdapter deviceListAdapter;
-    private RepeatReceiver repeatReceiver;
+    private RepeatReceiver    repeatReceiver;
     private BroadcastReceiver pushReceiver;
 
     public static Intent createIntent(Context context) {
@@ -76,6 +76,7 @@ public class MainActivity extends LvBaseActivity {
 
         sessionID = SharedPrefHelper.getInstance().getSessionID();
         SharedPrefHelper.getInstance().setBackgroundTaskStop(false);
+        SharedPrefHelper.getInstance().saveBackGroundGetUrl("");
     }
 
     @Override
@@ -114,9 +115,9 @@ public class MainActivity extends LvBaseActivity {
             deviceListAdapter.setItemClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int position = (int) view.getTag();
-                    DeviceInfo item = deviceListAdapter.getItem(position);
-                    Intent intent = DeviceControlActivity.createIntent(MainActivity.this, item);
+                    int        position = (int) view.getTag();
+                    DeviceInfo item     = deviceListAdapter.getItem(position);
+                    Intent     intent   = DeviceControlActivity.createIntent(MainActivity.this, item);
                     startActivity(intent);
                 }
             });
@@ -262,7 +263,7 @@ public class MainActivity extends LvBaseActivity {
                 if (null != deviceList && deviceList.size() > 0) {
                     initRecyclerView(deviceList);
                 } else {
-                    if(null != deviceListAdapter){
+                    if (null != deviceListAdapter) {
                         deviceListAdapter.clear();
                     }
                     showSnackBar(R.string._n_no_device);
@@ -277,7 +278,7 @@ public class MainActivity extends LvBaseActivity {
                 showSnackBar(R.string._n_refresh_failed);
             }
         };
-        String body = String.format("{\"sessionID\":\"%s\"}", sessionID);
+        String            body    = String.format("{\"sessionID\":\"%s\"}", sessionID);
         JsonObjectRequest request = new JsonObjectRequest(url, body, listener, errorListener);
         VolleyHelper.addRequest(this, request, requestTag);
     }
