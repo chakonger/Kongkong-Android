@@ -16,13 +16,18 @@ public class Constants {
   /**
    * 测试服务器地址
    * http://ss1.chakonger.net.cn
+   * 正式服务器，如需连接正式服务器请联系【精益开发】申请分配APP_ID，否则部分接口可能无法正常使用
+   * http://ss2.chakonger.net.cn
    */
-  public static final String  SERVER_ADDRESS = "http://ss2.chakonger.net.cn";
+  public static final String  SERVER_ADDRESS = "http://ss1.chakonger.net.cn";
   /**
    * 替换成本公司分配到的APP_ID
    */
   public static final String  APP_ID         = "demo";
 
+  /**
+   * 插座连接服务器地址：固定的，不需要修改
+   */
   public static final String BIND_ADDRESS = "ss2.chakonger.net.cn";
   public static final String BIND_PORT    = "80";
 
