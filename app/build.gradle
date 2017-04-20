@@ -30,3 +30,26 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.1.1'
     compile files('libs/picasso-2.5.2.jar')
 }
+
+def copyApk(srcFile, dstFile) {
+    def dir = new File(srcFile)
+    if (!dir.exists()) {
+        dir.mkdirs()
+    }
+
+    def dstF = new File(dstFile)
+    if (dstF.exists())
+        dstF.delete()
+
+    copy {
+        from srcFile
+        into dstFile
+        include '*.apk'
+        exclude '**/*-unaligned.apk'
+    }
+}
+
+def srcFile = "build/outputs/apk";
+def dstFile = "../APK";
+copyApk(srcFile, dstFile)
+
