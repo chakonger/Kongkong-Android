@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Message;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.android.volley.Response;
@@ -218,7 +220,7 @@ public class BoundActivity extends LvBaseActivity {
         } else {
           isSeedSendSucceed = false;
           // SEED 发送失败
-          bindFailed();
+          bindFailed(response.getString("errmsg"));
         }
       }
     };
@@ -235,7 +237,10 @@ public class BoundActivity extends LvBaseActivity {
   /*******************************
    * http request zone - END
    *******************************/
-  public void bindFailed() {
+  public void bindFailed(String msg) {
+    if (!TextUtils.isEmpty(msg)) {
+      Toast.makeText(this.getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+    }
     lvHandler.sendEmptyMessage(BOUND_FAILED);
   }
 
@@ -295,7 +300,7 @@ public class BoundActivity extends LvBaseActivity {
           public void call(Void o) {
             // 发送完毕
             if (jsonObject == null) {
-              bindFailed();
+              bindFailed(null);
             } else {
               mBoundProgressView.setStep(1);
             }
