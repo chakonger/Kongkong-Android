@@ -17,13 +17,13 @@ public class Constants {
    * 测试服务器地址
    * http://ss1.chakonger.net.cn
    */
-  public static final String  SERVER_ADDRESS = "http://ss1.chakonger.net.cn";
+  public static final String  SERVER_ADDRESS = "http://ss2.chakonger.net.cn";
   /**
    * 替换成本公司分配到的APP_ID
    */
   public static final String  APP_ID         = "demo";
 
-  public static final String BIND_ADDRESS = "ss1.chakonger.net.cn";
+  public static final String BIND_ADDRESS = "ss2.chakonger.net.cn";
   public static final String BIND_PORT    = "80";
 
   public static final String ERROR_CODE_SUCCEED   = "0";
